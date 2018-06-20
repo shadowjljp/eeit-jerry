@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>姓名密碼日期驗證</title>
+</head>
+<style>
+    .fs1 {
+        border-color: lightgreen;
+        border-radius: 20px;
+        width: 600px;
+        padding: 30px;
+
+
+    }
+
+    .dv1 {
+        padding: 10px;
+    }
+
+    .formStyle {
+        margin: 30px;
+    }
+
+    .image {
+        width: 30px;
+    }
+</style>
+<script>
+   
+    function prechkPassword() {
+        var thePwd = document.getElementById("pwd1").value;
+        var testPwd = /^(?=.*[0-9])(?=.*[a-zA-Z])(?=.*[!@#$%^&*]).{6,30}$/;
+
+        if (thePwd.indexOf(" ") != -1) {
+            document.getElementById("instantcheck2").innerHTML = "<img src=\"images/XX.jpg\" width=\"20px\" >不能有空白"
+
+
+        } else if (testPwd.test(thePwd))
+
+            document.getElementById("instantcheck2").innerHTML = "<img src=\"images/VV.jpg\" width=\"20px\" >正確"
+
+        else
+            document.getElementById("instantcheck2").innerHTML = "<img src=\"images/XX.jpg\" width=\"20px\" >錯誤"
+
+    }
+   
+    function prechkName() {
+        var theName = document.getElementById("name").value;
+        var testName = /^[\u4E00-\u9FA5]{2,}$/;
+
+        if (theName.indexOf(" ") != -1) {
+            document.getElementById("instantcheck1").innerHTML = "<img src=\"images/XX.jpg\" width=\"20px\" >不能有空白"
+        } else if (testName.test(theName)) {
+            document.getElementById("instantcheck1").innerHTML = "<img src=\"images/VV.jpg\" width=\"20px\" >正確"
+        }
+        else {
+
+            document.getElementById("instantcheck1").innerHTML = "<img src=\"images/XX.jpg\" width=\"20px\" >錯誤"
+        }
+    }
+
+     
+      function prechkDate(){
+            var datevalue = document.getElementById("date").value;
+            var date = datevalue.split("/")
+            var theYear = date[0];
+            var theMonth = date[1];
+            var theDate = date[2];
+
+            var d=new Date(datevalue);
+            var newYear=d.getFullYear();
+            var newMonth=d.getMonth()+1;
+            var newDate=d.getDate();
+
+            alert("theYear="+theYear+","+"theMonth="+theMonth+","+"theDate="+theDate+
+            "\n"+"newYear="+newYear+","+"newMonth="+newMonth+","+"newDate="+newDate);
+            if(date[2]==newDate)
+            document.getElementById("instantcheck3").innerHTML = "<img src=\"images/VV.jpg\" width=\"20px\" >正確"
+            else 
+            document.getElementById("instantcheck3").innerHTML = "<img src=\"images/XX.jpg\" width=\"20px\" >錯誤"
+}
+
+</script>
+
+<body onload='document.form1.text1.focus()'>
+    <form name="form1" action="#" method="post" class="formStyle">
+        <!--method="get"會看到user input的data -->
+        <fieldset class="fs1">
+            <legend>Form check</legend>
+            <div class="dv1">
+                姓名:
+                <input type="text" id="name" onchange="prechkName()" name="account" placeholder="請輸入中文姓名" maxlength="10" />
+                <span id="instantcheck1"></span>
+                <p>(1.不可空白，2.至少兩個字以上，3.必須全部為中文字)</p>
+            </div>
+            <hr>
+            <div class="dv1">
+                密碼:
+                <input type="password" id="pwd1" onchange="prechkPassword()" name="pwd" placeholder="請輸入密碼" maxlength="30" />
+                <span id="instantcheck2"></span>
+                <p>(1.不可空白，2.至少6個字以上必須包含英文字母，數字，特殊符號[!@#$%^&*])</p>
+            </div>
+            <hr>
+            <div class="dv1">
+                日期:
+                <input type="text" id="date" name="text1" onchange="prechkDate()" placeholder="ex 2000/10/10" maxlength="10" />
+                <span id="instantcheck3"></span>
+                <p>格式:西元年/月/日 yyyy/MM/dd</p>
+            </div>
+            <hr>
+        </fieldset>
+        <div class="dv1">
+            <input type="submit" value="Submit" name="submit" onclick="chkName(),chkPassword(),chkDate()">
+            <input type="reset" value="清除">
+        </div>
+    </form>
+</body>
+<script> function chkName() {
+        var theName = document.getElementById("name").value;
+        var testName = /^[\u4E00-\u9FA5]{2}$/;
+
+        if (theName.indexOf(" ") != -1) {
+            alert("Space is not allowed in Name ");
+
+
+        } else if (testName.test(theName)) {
+
+
+            alert("Name is correct");
+        }
+        else {
+
+            alert("Name is in wrong format")
+        }
+
+    }
+     function chkPassword() {
+        //取得元素值
+        var thePwd = document.getElementById("pwd1").value;
+        var testPwd = /^(?=.*[0-9])(?=.*[a-zA-Z])(?=.*[!@#$%^&*]).{6,30}$/;
+
+        if (thePwd.indexOf(" ") != -1) {
+            alert("Space is not allowed in Password ");
+        } else if (testPwd.test(thePwd))
+            alert("Password setting is successful.");
+        else
+            alert("Password is not complex enough.");
+
+    }
+    function chkDate(){
+            var datevalue = document.getElementById("date").value;
+            var date = datevalue.split("/")
+            var theYear = date[0];
+            var theMonth = date[1];
+            var theDate = date[2];
+
+            var d=new Date(datevalue);
+            var newYear=d.getFullYear();
+            var newMonth=d.getMonth()+1;
+            var newDate=d.getDate();
+
+            alert("theYear="+theYear+","+"theMonth="+theMonth+","+"theDate="+theDate+
+            "\n"+"newYear="+newYear+","+"newMonth="+newMonth+","+"newDate="+newDate);
+            if(date[2]==newDate)
+                alert("correct Date");
+            else 
+                alert("incorect Date");
+}
+
+    
+</script>
+
+</html>

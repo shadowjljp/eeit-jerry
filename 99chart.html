@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>99chart</title>
+    <style>
+    table,td{
+        border:red solid 2px;
+        border-collapse:collapse;
+    }
+    table{
+        background-color: lightblue;
+        border:rgb(107, 107, 17) solid 2px;
+        color:rgb(223, 138, 26);
+    }
+
+    </style>
+
+    
+    <script>
+    
+    document.write("<table><tr>");
+    for(i=1;i<=9;i++){
+       document.write("<td>");
+        for(j=2;j<=9;j++){
+
+           document.write(j+" * "+i+" = "+j*i);
+           document.write("<br>");
+        } 
+        document.write("</td>");
+       
+    }   
+//    document.write("<table><tr><td>PID</td><td>PName</td></tr></table>");
+     document.write("</tr> </table>" );
+  
+    
+    </script>
+</head>
+<body>
+    
+</body>
+</html>
